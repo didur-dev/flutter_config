@@ -69,6 +69,10 @@ def loadDotEnv(flavor = getCurrentFlavor()) {
 loadDotEnv()
 
 android {
+    if (project.android.hasProperty('namespace')) { 
+        namespace 'com.byneapp.flutter_config'
+    }
+    
     defaultConfig {
         project.env.each { k, v ->
             def escaped = v.replaceAll("%", "\\\\u0025")
