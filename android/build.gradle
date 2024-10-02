@@ -29,7 +29,7 @@ android {
         namespace 'com.byneapp.flutter_config'
     }
     
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
