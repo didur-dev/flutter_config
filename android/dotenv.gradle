@@ -82,7 +82,7 @@ android {
     }
 }
 
-tasks.whenTaskAdded { task ->
+tasks.configureEach { task ->
     if (project.hasProperty("envConfigFiles")) {
         project.envConfigFiles.each { envConfigName, envConfigFile ->
             if (task.name.toLowerCase() == "generate" + envConfigName + "buildconfig") {
