@@ -1,6 +1,3 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 Pod::Spec.new do |s|
   s.name             = 'flutter_config'
   s.version          = '3.0.0'
@@ -10,9 +7,10 @@ Pod::Spec.new do |s|
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Byne App' => 'engineering@byneapp.com' }
   s.source           = { :path => '.' }
-  s.dependency       'Flutter'
-  s.platform         = :ios, '11.0'
+  s.dependency 'Flutter'
+  s.platform = :ios, '11.0'
 
+  # Lista os arquivos fonte estáticos.
   s.source_files = 'Classes/FlutterConfigPlugin.h', 'Classes/FlutterConfigPlugin.m'
   s.public_header_files = 'Classes/FlutterConfigPlugin.h'
   
@@ -20,7 +18,9 @@ Pod::Spec.new do |s|
     :name => '[FlutterConfig] Generate Config',
     :script => '"${PODS_TARGET_SRCROOT}/Classes/generate_config.rb"',
     :execution_position => :before_compile,
+    # O script é executado se os arquivos .env mudarem.
     :input_files => ['${SRCROOT}/../../.env', '${SRCROOT}/../../.env.*'],
+    # O script modifica um dos arquivos fonte.
     :output_files => ['${PODS_TARGET_SRCROOT}/Classes/FlutterConfigPlugin.m']
   }
 end
