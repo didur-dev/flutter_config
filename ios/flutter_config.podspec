@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Byne App' => 'engineering@byneapp.com' }
   s.source           = { :path => '.' }
-  s.dependency       = 'Flutter'
+  s.dependency       'Flutter'
   s.platform         = :ios, '11.0'
 
   s.source_files = 'Classes/FlutterConfigPlugin.h', 'Classes/FlutterConfigPlugin.m'
