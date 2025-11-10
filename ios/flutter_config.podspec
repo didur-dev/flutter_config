@@ -3,29 +3,24 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_config'
-  s.version          = '0.0.1'
+  s.version          = '3.0.0'
   s.summary          = 'Config Variables for your Flutter Apps.'
-  s.description      = <<-DESC
-Config Variables for your Flutter Apps.
-                       DESC
-  s.homepage         = 'http://example.com'
+  s.description      = 'Automatically detects build flavors on iOS without manual setup.'
+  s.homepage         = 'https://github.com/ByneappLLC/flutter_config'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Byne App' => 'engineering@byneapp.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
-  s.dependency 'Flutter'
+  s.dependency       = 'Flutter'
+  s.platform         = :ios, '11.0'
 
-  # s.ios.deployment_target = '10.0'
+  s.source_files = 'Classes/FlutterConfigPlugin.h', 'Classes/FlutterConfigPlugin.m'
+  s.public_header_files = 'Classes/FlutterConfigPlugin.h'
+  
   s.script_phase = {
-    name: 'Config codegen',
-    script: %(
-set -ex
-HOST_PATH="$SRCROOT/../"
-"${PODS_TARGET_SRCROOT}/Classes/BuildDotenvConfig.rb" "$HOST_PATH" "${PODS_TARGET_SRCROOT}/Classes"
-),
-    execution_position: :before_compile,
-    input_files: ['$(SRCROOT)/Classes/BuildDotenvConfig.rb']
+    :name => '[FlutterConfig] Generate Config',
+    :script => '"${PODS_TARGET_SRCROOT}/Classes/generate_config.rb"',
+    :execution_position => :before_compile,
+    :input_files => ['${SRCROOT}/../../.env', '${SRCROOT}/../../.env.*'],
+    :output_files => ['${PODS_TARGET_SRCROOT}/Classes/FlutterConfigPlugin.m']
   }
 end
-
